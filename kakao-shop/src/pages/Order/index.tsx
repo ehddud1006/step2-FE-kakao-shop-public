@@ -23,6 +23,24 @@ const Order = () => {
     dispatch(getCartsRequestAction());
   }, [dispatch]);
 
+  useEffect(() => {
+    const messageHandler = (event: any) => {
+      if (event.origin !== 'https://deploy--majestic-druid-237186.netlify.app/pay/approve') {
+        // Ignore messages from other origins
+        return;
+      }
+
+      console.log(event.data);
+    };
+
+    window.addEventListener('message', messageHandler);
+
+    // It's important to remove the event listener when the component is unmounted.
+    return () => {
+      window.removeEventListener('message', messageHandler);
+    };
+  }, []);
+
   return (
     <S.Root>
       <S.Container>
