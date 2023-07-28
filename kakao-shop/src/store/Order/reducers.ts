@@ -81,8 +81,12 @@ export const OrderReducer = produce((draft: Draft<OrderState>, action) => {
     case PAYMENT_SUCCESS:
       draft.payment = action.payload.data;
       localStorage.setItem('tid', JSON.stringify(action.payload.data.tid));
-      const popup = openCenteredWindow(action.payload.data.next_redirect_pc_url, '카카오페이 결제', 500, 600);
-      popup?.postMessage('Hello', 'https://deploy--majestic-druid-237186.netlify.app/order');
+      openCenteredWindow(
+        isMobile() ? action.payload.data.next_redirect_app_url : action.payload.data.next_redirect_pc_url,
+        '카카오페이 결제',
+        500,
+        600,
+      );
       break;
 
     case APPROVE_SUCCESS:
@@ -154,4 +158,8 @@ const openCenteredWindow = (url: string, title: string, w: number, h: number) =>
     title,
     ' scrollbars=no, resizable=no, width=' + w + ', height=' + h + ', top=' + posY + ', left=' + posX,
   );
+};
+
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
