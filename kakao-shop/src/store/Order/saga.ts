@@ -37,15 +37,13 @@ export function* watchPayment({ payload }: PaymentRequestAction) {
 export function* watchApprove({ payload }: ApproveRequestAction) {
   try {
     yield call(approveAPI, payload);
-    console.log(' yield call(approveAPI, payload);');
     yield put(approveSuccessAction());
-    console.log(' yield call(approveSuccessAction()');
     yield put(orderProductRequestAction());
-    console.log(' yield callorderProductRequestAction()');
     const response: AxiosResponse<OrderResponse> = yield call(orderAPI);
     yield put(orderProductSuccessAction(response));
-    yield console.log(' yield put(orderProductSuccessAction(response));');
-    yield window.close();
+    yield setTimeout(() => {
+      window.close();
+    }, 500);
   } catch (err: unknown) {
     // const error = err as AxiosError<OrderResponse>;
   }
