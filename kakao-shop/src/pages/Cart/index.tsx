@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { withRouteGuard } from '@hocs/withRouteGuard';
 
 import { CustomSuspense } from '@components/atom';
 import PageLoader from '@components/molecules/PageLoader';
@@ -8,8 +9,6 @@ import Submit from '@components/page/Cart/Submit';
 import TotalResult from '@components/page/Cart/TotalResult';
 
 import { useCartPage } from '@hooks/page/Cart/useCartPage';
-
-import withRouteGuard from '../../hocs/withRouteGuard';
 
 const Cart = withRouteGuard('/login', () => {
   const {

@@ -2,7 +2,7 @@ import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-const withRouteGuard = (replaceUrl: string, Page: () => JSX.Element) => {
+export const withRouteGuard = (replaceUrl: string, Page: () => JSX.Element) => {
   return () => {
     const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
 
@@ -13,5 +13,3 @@ const withRouteGuard = (replaceUrl: string, Page: () => JSX.Element) => {
     return <Page />;
   };
 };
-
-export default withRouteGuard;
