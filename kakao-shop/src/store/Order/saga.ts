@@ -11,6 +11,7 @@ import {
   orderProductRequestAction,
   orderProductSuccessAction,
   paymenSuccessAction,
+  popupCloseAction,
 } from '@store/Order/reducers';
 import type { AxiosError, AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
@@ -41,9 +42,7 @@ export function* watchApprove({ payload }: ApproveRequestAction) {
     yield put(orderProductRequestAction());
     const response: AxiosResponse<OrderResponse> = yield call(orderAPI);
     yield put(orderProductSuccessAction(response));
-    yield setTimeout(() => {
-      window.close();
-    }, 500);
+    yield put(popupCloseAction());
   } catch (err: unknown) {
     // const error = err as AxiosError<OrderResponse>;
   }

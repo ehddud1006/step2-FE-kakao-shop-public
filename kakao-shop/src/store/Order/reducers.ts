@@ -15,6 +15,8 @@ export const APPROVE_REQUEST = 'order/APPROVE_REQUEST';
 export const APPROVE_SUCCESS = 'order/APPROVE_SUCCESS';
 export const APPROVE_FAILURE = 'order/APPROVE_FAILURE';
 
+export const POPUP_CLOSE = 'order/POPUP_CLOSE';
+
 export const orderProductRequestAction = (): OrderProductRequestAction => ({
   type: ORDER_PRODUCT_REQUEST,
 });
@@ -43,6 +45,10 @@ export const approveRequestAction = (payload: ApproveRequest): ApproveRequestAct
 
 export const approveSuccessAction = (): ApproveSuccessAction => ({
   type: APPROVE_SUCCESS,
+});
+
+export const popupCloseAction = (): PopupCloseAction => ({
+  type: POPUP_CLOSE,
 });
 
 // Initial State
@@ -82,6 +88,10 @@ export const OrderReducer = produce((draft: Draft<OrderState>, action) => {
     case APPROVE_SUCCESS:
       window.opener.location.href = '/payResult';
       break;
+
+    case POPUP_CLOSE:
+      window.close();
+      break;
   }
 }, initialState);
 
@@ -116,6 +126,10 @@ export type ApproveRequestAction = {
 
 export type ApproveSuccessAction = {
   type: typeof APPROVE_SUCCESS;
+};
+
+export type PopupCloseAction = {
+  type: typeof POPUP_CLOSE;
 };
 
 // StateType
