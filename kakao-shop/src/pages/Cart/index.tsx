@@ -9,7 +9,9 @@ import TotalResult from '@components/page/Cart/TotalResult';
 
 import { useCartPage } from '@hooks/page/Cart/useCartPage';
 
-const Cart = () => {
+import withRouteGuard from '../../hocs/withRouteGuard';
+
+const Cart = withRouteGuard('/login', () => {
   const {
     state: { isLoading, error, carts: products, totalPrice },
     handler: { onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem, onSubmit },
@@ -32,7 +34,7 @@ const Cart = () => {
       </S.Root>
     </CustomSuspense>
   );
-};
+});
 
 export default Cart;
 
