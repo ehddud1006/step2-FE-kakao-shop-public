@@ -44,8 +44,8 @@ export function* watchApprove({ payload }: ApproveRequestAction) {
     console.log(' yield callorderProductRequestAction()');
     const response: AxiosResponse<OrderResponse> = yield call(orderAPI);
     yield put(orderProductSuccessAction(response));
-    console.log(' yield put(orderProductSuccessAction(response));');
-    window.close();
+    yield console.log(' yield put(orderProductSuccessAction(response));');
+    yield window.close();
   } catch (err: unknown) {
     // const error = err as AxiosError<OrderResponse>;
   }
