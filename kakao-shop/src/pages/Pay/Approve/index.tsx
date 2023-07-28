@@ -10,8 +10,6 @@ const Approve = () => {
   const tid = localStorage.getItem('tid');
 
   useEffect(() => {
-    console.log('sisi');
-    console.log(tid);
     if (!tid) return;
     if (!pgToken) return;
 
